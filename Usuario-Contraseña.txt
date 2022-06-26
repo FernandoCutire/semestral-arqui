@@ -1,0 +1,12 @@
+Clínicas ABC - CREDENCIALES PARA EL LOG IN
+
+--Usuario N°1--
+Usuario: "user"
+Contraseña: "pass1234"
+
+--Usuario N°2--
+Usuario: "test"
+Contraseña: "test"
+
+---Sin comillas---
+
