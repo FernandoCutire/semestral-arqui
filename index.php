@@ -63,10 +63,10 @@ session_start();
               $_SESSION['usuario']=$_POST['usuario'];
               $_SESSION['clave']=$_POST['clave'];
               echo "Inicio de sesión correcto. Redirigiendo...";
-              echo "<script type='text/javascript'>setTimeout(function () {window.location.href = 'inicio.php';}, 2000);</script>";
+              echo "<script type='text/javascript'>setTimeout(function () {window.location.href = 'set.php';}, 1000);</script>";
               }
             else{
-              echo "Credenciales incorrectas. Inténtelo nuevamente... </br> Ver Usuario-Contraseña.txt";
+              echo "Credenciales incorrectas. Inténtelo nuevamente... </br> Ver README.txt";
             }
             }
           ?> 

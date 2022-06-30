@@ -7,6 +7,8 @@ session_start();
 if(!isset($_SESSION['usuario'])){
   echo "<script type='text/javascript'>window.location.href = 'out.php';</script>";
 }
+//Pone la cookie del usuario
+ setcookie('usuario', $_SESSION['usuario']);
 
 //Detecta si no has enviado el formulario, si no lo has hecho te devolverá a este
 if(!isset($_POST['enviar_imc'])){
@@ -43,6 +45,7 @@ else{
 }
 
 ?>
+<article>
 <?php
   resultados_imc();
 ?> 

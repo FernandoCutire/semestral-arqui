@@ -8,7 +8,8 @@ if(!isset($_SESSION['usuario'])){
   echo "<script type='text/javascript'>window.location.href = 'out.php';</script>";
   exit();
 }
-
+//Pone la cookie del usuario
+ setcookie('usuario', $_SESSION['usuario']);
 
 //Contador de esta página
 if(isset($_COOKIE['contador_acercade'])){

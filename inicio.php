@@ -9,6 +9,10 @@ if(!isset($_SESSION['usuario'])){
   exit();
 }
 
+//Pone la cookie del usuario
+ setcookie('usuario', $_SESSION['usuario']);
+
+
 //Contador de esta página
 if(isset($_COOKIE['contador_inicio'])){
   setcookie('contador_inicio', $_COOKIE['contador_inicio'] + 1);
