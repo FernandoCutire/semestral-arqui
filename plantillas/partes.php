@@ -162,7 +162,7 @@ function pie($mensaje){
                 <button class = "botoncontador" type="button">   
                   <?php echo $mensaje; ?>
                 </button> </br>
-                 Gamero y Sáenz - Clínicas ABC &copy 2022 Copyright<br>
+                 Cutire-Feng-Gamero-St.Rose-Sáenz - Clínicas ABC &copy <?php echo date("Y") ?> Copyright<br>
                 Arquitecura y Desarrollo de Aplicaciones Web<br>
                 Evaluación de Aprendizajes N°2
                 

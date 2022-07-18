@@ -49,6 +49,9 @@ session_start();
             <p class="casillatext"> Contraseña: </p>  <input class="input" name="clave" type="password" id="clave"> 
           </div> </br> 
           <div class="casilla" > <input class="btn" name="enviar" type="submit" id="enviar" value="Enviar" > </div>
+          <br><br>
+          <div class="casilla"> <a href="registrarse.php">¿No tienes cuenta? Registrese aqui!</a> </div>
+
       </form> 
       
       </br>

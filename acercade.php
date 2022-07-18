@@ -46,8 +46,7 @@ else{
 <center><h3> Clínicas ABC </h3> </center></br>
 <img class="img_info" src="imagenes/logo_clinica.png" alt="logo_clinica"/>
  <p class="text_resultado">
- Imagínate que aquí hay info de la clínica. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
- </p> </br>
+ Centro médico integral privado, Preparados para el cuidado de la salud con una larga trayectoria y vasta experiencia para la atención de su salud. Nuestro compromiso permanente atiende al manejo preferencial de sus pacientes, con atenciones médicas excepcionales, sin obviar la calidez humana que nos caracteriza y que hemos tenido a partir de 1973 </p> </br>
 <main>
         
 </main>
