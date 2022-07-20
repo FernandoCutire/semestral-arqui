@@ -40,7 +40,7 @@ session_start();
    
 
       <div class="form" align=center>
-      <form name="login" method="post" action="index.php">
+      <form name="login" method="post" action="validar.php">
          <h3> Ingrese sus datos </h3> 
           <div class="casilla" > 
             <p class="casillatext"> Usuario: </p>  <input class="input" name="usuario" type="text" id="usuario">
@@ -57,11 +57,14 @@ session_start();
       </br>
 
       <?php
+    
+    //se puede quedar asi pero mejor si lo validamos con la base de datos en validar.php
       // Si se envió el formulario, se comprueban los campos
             if(isset($_POST['enviar'])){
               if(empty($_POST['usuario']) || empty($_POST['clave'])){
                 echo 'Debe llenar todos los campos';
               }
+              
             elseif(($_POST['usuario'] == "user"  and $_POST['clave'] == "pass1234") || ($_POST['usuario'] == "test" and $_POST['clave'] == "test" )){
               $_SESSION['usuario']=$_POST['usuario'];
               $_SESSION['clave']=$_POST['clave'];
@@ -72,7 +75,8 @@ session_start();
               echo "Credenciales incorrectas. Inténtelo nuevamente... </br> Ver README.txt";
             }
             }
-          ?> 
+          
+          ?>
           </div>
           
 

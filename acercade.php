@@ -48,7 +48,6 @@ else{
  <p class="text_resultado">
  Centro médico integral privado, Preparados para el cuidado de la salud con una larga trayectoria y vasta experiencia para la atención de su salud. Nuestro compromiso permanente atiende al manejo preferencial de sus pacientes, con atenciones médicas excepcionales, sin obviar la calidez humana que nos caracteriza y que hemos tenido a partir de 1973 </p> </br>
 <main>
-        
 </main>
 
 <?php

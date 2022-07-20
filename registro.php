@@ -18,8 +18,7 @@ $user = "root";
 $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
 mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
 
-$sql = "INSERT INTO Usuario (Usuario, Clave) 
-VALUES ('$usuarioReg', '$claveReg')";
+$sql = "INSERT INTO Usuario (Usuario, Clave) VALUES ('$usuarioReg', '$claveReg')";
 
 if ($con->query($sql)===TRUE){
     echo "guardado correctamente <br>";
@@ -31,6 +30,6 @@ else{
 $con->close();
 }
 else{
-    echo "debe llenar los campos >:/ hdp";
+    echo "debe llenar los campos";
 }
 ?>
