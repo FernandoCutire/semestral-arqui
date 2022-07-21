@@ -100,7 +100,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
 
 
-
+<br><br>
 <h1>Historial Mensual de IMC</h1>
 <br>
         <?php
