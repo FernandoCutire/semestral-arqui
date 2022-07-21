@@ -19,7 +19,7 @@ if(isset($_COOKIE['contador_select_historial'])){
   $mensaje = 'Visitante: #' . $_COOKIE['contador_select_historial'];
 }
 else{
-  setcookie('contador_inicio', 2);
+  setcookie('contador_select_historial', 2);
   $mensaje = 'Visitante: #1';
 }
 

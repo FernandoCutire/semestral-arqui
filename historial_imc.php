@@ -69,7 +69,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
-        echo $cont_entradas;
+        
         //Solo muestra la tabla si tiene una o más entradas
         if ($cont_entradas>= 1){
             ?>
