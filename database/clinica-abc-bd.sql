@@ -1,5 +1,5 @@
 -- phpMyAdmin SQL Dump
-1-- version 5.2.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
