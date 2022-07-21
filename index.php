@@ -40,7 +40,7 @@ session_start();
    
 
       <div class="form" align=center>
-      <form name="login" method="post" action="validar.php">
+      <form name="login" method="post" action="index.php">
          <h3> Ingrese sus datos </h3> 
           <div class="casilla" > 
             <p class="casillatext"> Usuario: </p>  <input class="input" name="usuario" type="text" id="usuario">
@@ -50,7 +50,7 @@ session_start();
           </div> </br> 
           <div class="casilla" > <input class="btn" name="enviar" type="submit" id="enviar" value="Enviar" > </div>
           <br><br>
-          <div class="casilla"> <a href="registrarse.php">¿No tienes cuenta? Registrese aqui!</a> </div>
+          <div class="casilla"> <a href="registrarse.php">¿No tienes cuenta? ¡Registrese aquí!</a> </div>
 
       </form> 
       
@@ -58,22 +58,51 @@ session_start();
 
       <?php
     
-    //se puede quedar asi pero mejor si lo validamos con la base de datos en validar.php
+
       // Si se envió el formulario, se comprueban los campos
             if(isset($_POST['enviar'])){
               if(empty($_POST['usuario']) || empty($_POST['clave'])){
                 echo 'Debe llenar todos los campos';
               }
               
-            elseif(($_POST['usuario'] == "user"  and $_POST['clave'] == "pass1234") || ($_POST['usuario'] == "test" and $_POST['clave'] == "test" )){
+            else{
+              
+              //Conexión a BD
+              $bd = "clinica-abc-bd";
+              $host= "localhost";
+              $pw = ""; //pasword
+              $user = "root";
+              $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+              mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+              
+              // Captar usuario y contraseña en variable, evitando inyección SQL
+              $usuario = mysqli_real_escape_string($con,$_POST['usuario']);
+              $clave = mysqli_real_escape_string($con,$_POST['clave']); 
+
+              
+              // Se cuentan cuantos ingresos coinciden con $usuario y $clave
+              $sql = "select *from usuario where usuario = '$usuario' and clave = '$clave'";  
+              $resultado = mysqli_query($con, $sql);  
+              $row = mysqli_fetch_array($resultado, MYSQLI_ASSOC); 
+              
+              $cont_usuariocorrecto = mysqli_num_rows($resultado);  
+
+              if($cont_usuariocorrecto >= 1){  
+                
               $_SESSION['usuario']=$_POST['usuario'];
               $_SESSION['clave']=$_POST['clave'];
               echo "Inicio de sesión correcto. Redirigiendo...";
-              echo "<script type='text/javascript'>setTimeout(function () {window.location.href = 'set.php';}, 1000);</script>";
+              echo "<script type='text/javascript'>setTimeout(function () {window.location.href = 'set.php';}, 1000);</script>";  
+                }  
+              else{  
+                echo "Credenciales incorrectas. Intentelo nuevamente...";
+                
+                }     
+              
+
+
               }
-            else{
-              echo "Credenciales incorrectas. Inténtelo nuevamente... </br> Ver README.txt";
-            }
+            
             }
           
           ?>

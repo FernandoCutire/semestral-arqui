@@ -13,7 +13,7 @@ if(empty($usuarioReg) || empty($claveReg)){
 header("Location: index.html");
 exit();
 }
-mysqli_connect('localhost','root','*****') or die("Error al conectar ");
+mysqli_connect('localhost','root','*****') or die("Error al conectar.");
 mysqli_select_db($con,$bd) or die ("Error al seleccionar la Base de datos: ");
 $result = mysqli_query("SELECT * from Usuario where Usuario='$usuarioReg" . $usuarioReg . "'");
 if($row = mysqli_fetch_array($result)){

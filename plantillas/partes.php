@@ -26,7 +26,8 @@ function encabezado(){
                
                 <p id="text_user">
                 <?php
-                  $mensaje2 = 'Usuario: ' . $_COOKIE['usuario'];
+                  $usuario_actual = substr($_COOKIE['usuario'], 0, 5);
+                  $mensaje2 = 'Usuario: ' . $usuario_actual;
                   echo $mensaje2;
                 ?>
                 </br>Cerrar Sesión
@@ -99,7 +100,8 @@ function encabezado_mobile(){
                 <img class= "user_img" src="imagenes/user.png" alt="User image"/>
                 <p id="text_user">
                 <?php
-                  $mensaje2 = 'Usuario: ' . $_COOKIE['usuario'];
+                  $usuario_actual = substr($_COOKIE['usuario'], 0, 5);
+                  $mensaje2 = 'Usuario: ' . $usuario_actual;
                   echo $mensaje2;
                 ?>
                 </br>
