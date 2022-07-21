@@ -14,11 +14,88 @@ class calculos{
     public function asignar_imc($altura, $masa) {
         $this->altura = $altura;
         $this->masa = $masa;
+       
+    }
+
+    
+    public function bd_imc($altura, $masa) {
+
+        $res = round($masa/($altura*$altura),1);
+
+
+        if ($res<18.5){
+            
+            return $res . " (Bajo de Peso)";
+        }
+        elseif ($res>=18.5 && $res<25){
+            
+            return $res . " (Peso Normal)";
+        }
+        elseif ($res>=25 && $res<30){
+            
+            return $res . " (Sobrepeso)";
+        }
+        elseif ($res>=30 && $res<40){
+           
+            return $res . " (Obeso)";
+        }
+        elseif ($res>=40){
+
+            return $res . " (Extrema Obesidad)";
+    }
     }
 
     public function asignar_glucosa($glucosa, $glucosa_tipo) {
         $this->glucosa = $glucosa;
         $this->glucosa_tipo = $glucosa_tipo;
+    }
+
+    public function bd_glucosa($glucosa, $glucosa_tipo) {
+        switch ($glucosa_tipo) {
+        case "en ayuna":
+            if ($glucosa<70){
+                
+                
+            }
+            elseif($glucosa>=70 && $glucosa<=100) {
+                
+                        $res_glucosa='Glucosa Normal';       
+                   
+            }
+            elseif($glucosa>100 && $glucosa<126) {
+                
+                
+                        $res_glucosa='Pre Diabetes';
+                    
+            }
+            elseif($glucosa>=126) {
+                
+                        $res_glucosa='Diabetes';
+                       
+                   
+            }
+            
+            break;
+        case "Posprandial":
+            if ($glucosa<70){
+                $res_glucosa='Glucosa Baja';
+                        
+                
+            }
+            elseif($glucosa>=70 && $glucosa<=140) {
+                $res_glucosa='Glucosa Normal';
+                        
+            }
+            elseif($glucosa>140 && $glucosa<200) {
+                $res_glucosa='Pre Diabetes';
+                       
+            }
+            elseif($glucosa>=200) {
+                $res_glucosa='Diabetes';
+                        
+            }
+            break;
+        }
     }
 
     public function asignar_presion($sistolica, $diastolica) {

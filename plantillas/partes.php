@@ -170,7 +170,7 @@ function pie($mensaje){
                 </button> </br>
                  Cutire-Feng-Gamero-St.Rose-Sáenz - Clínicas ABC &copy <?php echo date("Y") ?> Copyright<br>
                 Arquitecura y Desarrollo de Aplicaciones Web<br>
-                Evaluación de Aprendizajes N°2
+                Proyecto Semestral
                 
             </center>
         </footer>
@@ -224,6 +224,8 @@ function formulario_imc(){
          <p class="casillatext"> Altura (m): </p>  <input class="input" name="altura_imc" type="number" step="0.01" min="0.2" max="2.5" id="altura_imc" required>
         
          <p class="casillatext"> Masa (kg): </p>  <input class="input" name="masa_imc" type="number" step="1" min="1" max="1000" id="masa_imc" required> 
+
+         <p class="casillatext"> Fecha de captura: </p><input type="date"  name="fecha" min="2018-01-01" max="2022-12-31" id="fecha" required>
         
        <div class="casilla" > <input class="btn" name="enviar_imc" type="submit" id="enviar_imc" value="Calcular IMC" > </div>
    </form> 
@@ -333,9 +335,38 @@ function resultados_imc(){
         if(isset($_POST["enviar_imc"])){
           $obj = new calculos();
           $imc_resultado = $obj->asignar_imc($_POST["altura_imc"], $_POST["masa_imc"]);
+          $imc_res = $obj->bd_imc($_POST["altura_imc"], $_POST["masa_imc"]);
           echo $imc_resultado;
         }
         $obj->Calcularimc($_POST["altura_imc"], $_POST["masa_imc"]);
+        //Conexión a BD
+              $bd = "clinica-abc-bd";
+              $host= "localhost";
+              $pw = ""; //pasword
+              $user = "root";
+              $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+              mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+              
+              // Guardar datos en bd de registro
+              $registro1 = 'Altura: ' . $_POST["altura_imc"] . ' m';
+              $registro2 = "Masa: " . $_POST["masa_imc"] . " kg";
+              $fecha = $_POST["fecha"];
+              $usuario = $_COOKIE['usuario'];
+              echo $usuario;
+
+              $sql = "INSERT INTO resultados (Tipo, Usuario,	Registro1, Registro2,	Resultado, Fecha) 
+              VALUES ('IMC', '$usuario'  , '$registro1' , '$registro2', '$imc_res', '$fecha' )";
+
+              
+              if ($con->query($sql)===TRUE){
+                echo "Guardado";
+                }
+              else{
+              echo "error: ".$sql . "<br>" . $con->error;
+                }
+              $con->close();
+
+
         ?>
 
        <button onclick="setTimeout(function () {window.location.href = 'imc.php';}, 250);" class = "btn" type="button" href="imc.php">   
@@ -421,6 +452,42 @@ function resultados_presion(){
        <button onclick="setTimeout(function () {window.location.href = 'presion.php';}, 250);" class = "btn" type="button" href="imc.php">   
           Volver
        </button>
+   </form> 
+   
+   </br>
+       </div>
+       
+
+
+</div>
+
+<?php
+}
+?>
+
+
+<?php
+function historial(){
+?>
+<div class="formulario" >
+   
+
+   <div class="form" align=center>
+   <form name="login" method="post" action="presion_resultados.php">
+      <h2> Historial de </h2> 
+      <h3> Usted ingresó los datos: </h3> 
+
+         <p> Lectura :  <?php echo "Hola" ?>  </p>
+
+         
+        </br>
+      <h3> Resultados: </h3> 
+        <?php
+        
+         
+        ?>
+
+       
    </form> 
    
    </br>
