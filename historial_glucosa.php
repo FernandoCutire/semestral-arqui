@@ -12,11 +12,11 @@ if (!isset($_SESSION['usuario'])) {
 setcookie('usuario', $_SESSION['usuario']);
 
 //Contador de esta página
-if (isset($_COOKIE['contador_historial'])) {
-    setcookie('contador_historial', $_COOKIE['contador_historial'] + 1);
-    $mensaje = 'Visitante: #' . $_COOKIE['contador_historial'];
+if (isset($_COOKIE['contador_historial_glucosa'])) {
+    setcookie('contador_historial_glucosa', $_COOKIE['contador_historial_glucosa'] + 1);
+    $mensaje = 'Visitante: #' . $_COOKIE['contador_historial_glucosa'];
 } else {
-    setcookie('contador_historial', 2);
+    setcookie('contador_historial_glucosa', 2);
     $mensaje = 'Visitante: #1';
 }
 
@@ -46,7 +46,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
 <div class="form" align=center>
 
-<h1>Historial Mensual de IMC</h1>
+<h1>Historial Mensual de Glucosa</h1>
 <br><br>
 
 
@@ -67,7 +67,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/01/01' and '2022/01/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/01/01' and '2022/01/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -78,9 +78,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -108,7 +108,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/02/01' and '2022/02/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/02/01' and '2022/02/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -119,9 +119,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -149,7 +149,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/03/01' and '2022/03/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/03/01' and '2022/03/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -160,9 +160,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -190,7 +190,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/04/01' and '2022/04/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/04/01' and '2022/04/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -201,9 +201,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -231,7 +231,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/05/01' and '2022/05/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/05/01' and '2022/05/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -242,9 +242,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -272,7 +272,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/06/01' and '2022/06/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/06/01' and '2022/06/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -283,9 +283,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -313,7 +313,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/07/01' and '2022/07/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/07/01' and '2022/07/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -324,9 +324,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -354,7 +354,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/08/01' and '2022/08/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/08/01' and '2022/08/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -365,9 +365,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -395,7 +395,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/09/01' and '2022/09/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/09/01' and '2022/09/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -406,9 +406,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -436,7 +436,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/10/01' and '2022/10/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/10/01' and '2022/10/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -447,9 +447,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -477,7 +477,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/11/01' and '2022/11/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/11/01' and '2022/11/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -488,9 +488,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -518,7 +518,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
  
         // Se crea un loop para leer la bd
-        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/12/01' and '2022/12/31'";  
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '2022/12/01' and '2022/12/31'";  
         $resultado = mysqli_query($con, $sql); 
         //Cuenta cuántas entradas hay en ese mes
         $cont_entradas = mysqli_num_rows($resultado);
@@ -529,9 +529,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
             <table class="table">
             <tr class="gestor_table_first_column">
-            <td>Altura(m)</td>
-            <td>Masa(kg)</td>
-            <td>IMC</td>
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
             <td>Fecha</td>
         </tr>
         <?php
@@ -560,88 +560,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
 
 
-</div>
-<br>
-<h1>Glucosa</h1>
 
-<div class="gestor_table">
-    <h3>Reporte semanal Glucosa</h3>
-    <table class="table">
-        <tr class="gestor_table_first_column">
-            <td>Lectura Glucómetro (mg/L)</td>
-            <td>Lectura hecha en</td>
-            <td>Lectura</td>
-            <td>Fecha</td>
-        </tr>
-        <?php
-        echo "<tr class='gestor_table_rows'>";
-        echo "<td>" . "150" . "</td>";
-        echo "<td>" . "En ayuda" . "</td>";
-        echo "<td>" . "Diabetes" . "</td>";
-        echo "<td>" . "21-07-2022" . "</td>";
-        ?>
-    </table>
-</div>
-
-
-<div class="gestor_table">
-    <h3>Reporte mensual Glucosa</h3>
-    <table class="table">
-        <tr class="gestor_table_first_column">
-            <td>Lectura Glucómetro (mg/L)</td>
-            <td>Lectura hecha en</td>
-            <td>Lectura</td>
-            <td>Fecha</td>
-        </tr>
-        <?php
-        echo "<tr class='gestor_table_rows'>";
-        echo "<td>" . "150" . "</td>";
-        echo "<td>" . "En ayuda" . "</td>";
-        echo "<td>" . "Diabetes" . "</td>";
-        echo "<td>" . "21-07-2022" . "</td>";
-        ?>
-    </table>
-</div>
-
-<h1>Presión Arterial</h1>
-
-<div class="gestor_table">
-    <h3>Reporte semanal Presión Arterial</h3>
-    <table class="table">
-        <tr class="gestor_table_first_column">
-            <td>Presión sistólica (mm Hg)</td>
-            <td>Presión diastólica (mm Hg)</td>
-            <td>Lectura</td>
-            <td>Fecha</td>
-        </tr>
-        <?php
-        echo "<tr class='gestor_table_rows'>";
-        echo "<td>" . "150" . "</td>";
-        echo "<td>" . "160" . "</td>";
-        echo "<td>" . "Normal" . "</td>";
-        echo "<td>" . "21-07-2022" . "</td>";
-        ?>
-    </table>
-</div>
-
-
-<div class="gestor_table">
-    <h3>Reporte mensual Presión Arterial</h3>
-    <table class="table">
-        <tr class="gestor_table_first_column">
-            <td>Presión sistólica (mm Hg)</td>
-            <td>Presión diastólica (mm Hg)</td>
-            <td>Lectura</td>
-            <td>Fecha</td>
-        </tr>
-        <?php
-        echo "<tr class='gestor_table_rows'>";
-        echo "<td>" . "150" . "</td>";
-        echo "<td>" . "160" . "</td>";
-        echo "<td>" . "Normal" . "</td>";
-        echo "<td>" . "21-07-2022" . "</td>";
-        ?>
-    </table>
 </div>
 </div>
 

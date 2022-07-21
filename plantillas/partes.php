@@ -47,7 +47,7 @@ function encabezado(){
         Inicio
       </button>
 
-      <button onclick="window.location.href='historial.php'" class="opcion_barra" type="button" href="historial.php">   
+      <button onclick="window.location.href='select_historial.php'" class="opcion_barra" type="button" href="historial.php">   
         Historial
       </button>
 
@@ -116,6 +116,7 @@ function encabezado_mobile(){
             </a>
 
             <a href="inicio.php">Inicio</a>
+            <a href="select_historial.php">Historial</a>
             <a href="masinformacion.php">Más Información</a>
             <a href="acercade.php">Acerca de</a>
           </div>
@@ -498,7 +499,7 @@ function resultados_presion(){
         
 
         $sql = "INSERT INTO resultados (Tipo, Usuario,	Registro1, Registro2,	Resultado, Fecha) 
-        VALUES ('Glucosa', '$usuario'  , '$registro1' , '$registro2', '$presion_res', '$fecha' )";
+        VALUES ('Presion', '$usuario'  , '$registro1' , '$registro2', '$presion_res', '$fecha' )";
 
 
         if ($con->query($sql)===TRUE){
