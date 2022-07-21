@@ -21,7 +21,7 @@ CONTRASEÑA: pass1234
 
 ## Descripción
 
-Aplicación que te dice tu horóscopo con tu nombre, apellido y fecha de nacimiento.
+Aplicación que te dice para registrar tu imc, nivel de glucosa en la sangre y presión arterial.
 
 ## Requisitos
 

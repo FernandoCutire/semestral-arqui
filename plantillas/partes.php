@@ -228,6 +228,7 @@ function formulario_imc(){
          <p class="casillatext"> Fecha de captura: </p><input type="date"  name="fecha" min="2018-01-01" max="2022-12-31" id="fecha" required>
         
        <div class="casilla" > <input class="btn" name="enviar_imc" type="submit" id="enviar_imc" value="Calcular IMC" > </div>
+
    </form> 
    
    </br>
@@ -268,7 +269,10 @@ function formulario_glucosa(){
               Posprandrial (dos horas después de comer)
                  
           </label></br>
-  
+
+             <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha_reg" type="date"  id="fecha_reg" required>
+
+
          </div>
 
        <div class="casilla" > <input class="btn" name="enviar_glucosa" type="submit" id="enviar_glucosa" value="Calcular Glucosa" > </div>
@@ -294,12 +298,13 @@ function formulario_presion(){
    <div class="form" align=center>
    <form name="imc_form" method="post" action="presion_resultados.php">
       <h2> Presión Arterial </h2> 
-      <h3> Ingrese sus datos </h3> 
-       
+      <h3> Ingrese sus datos </h3>
          <p class="casillatext"> Presión sistólica (mm Hg): </p>  <input class="input" name="sistolica" type="number" step="1" min="10" max="500" id="sistolica" required>
         
-         <p class="casillatext"> Presión diastólica (mm Hg): </p>  <input class="input" name="diastolica" type="number" step="1" min="10" max="500" id="diastolica" required> 
-        
+         <p class="casillatext"> Presión diastólica (mm Hg): </p>  <input class="input" name="diastolica" type="number" step="1" min="10" max="500" id="diastolica" required>
+
+       <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha_reg" type="date"  id="fecha_reg" required>
+
        <div class="casilla" > <input class="btn" name="enviar_presion" type="submit" id="enviar_presion" value="Calcular Presión" > </div>
    </form> 
    
@@ -338,7 +343,7 @@ function resultados_imc(){
           $imc_res = $obj->bd_imc($_POST["altura_imc"], $_POST["masa_imc"]);
           echo $imc_resultado;
         }
-        $obj->Calcularimc($_POST["altura_imc"], $_POST["masa_imc"]);
+          $obj->Calcularimc($_POST["altura_imc"], $_POST["masa_imc"]);
         //Conexión a BD
               $bd = "clinica-abc-bd";
               $host= "localhost";
