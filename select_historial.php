@@ -14,12 +14,12 @@ if(!isset($_SESSION['usuario'])){
 
 
 //Contador de esta página
-if(isset($_COOKIE['contador_inicio'])){
-  setcookie('contador_inicio', $_COOKIE['contador_inicio'] + 1);
-  $mensaje = 'Visitante: #' . $_COOKIE['contador_inicio'];
+if(isset($_COOKIE['contador_select_historial'])){
+  setcookie('contador_select_historial', $_COOKIE['contador_select_historial'] + 1);
+  $mensaje = 'Visitante: #' . $_COOKIE['contador_select_historial'];
 }
 else{
-  setcookie('contador_inicio', 2);
+  setcookie('contador_select_historial', 2);
   $mensaje = 'Visitante: #1';
 }
 
@@ -44,24 +44,24 @@ else{
 }
 
 ?>
-<center><h3> ¡Bienvenido! Seleccione una opción </h3> </center>
+<center><h3> Seleccione la opción de Historial </h3> </center>
 
 <main>
     
-    <button onclick="setTimeout(function () {window.location.href = 'imc.php';}, 250);" class = "botontipo" type="button" href="imc.php">   
+    <button onclick="setTimeout(function () {window.location.href = 'historial_imc.php';}, 250);" class = "botontipo" type="button" href="imc.php">   
       
       <img class="icono" src="imagenes/imc.png" alt="IMC image"/>
-      <br/> IMC
+      <br/> Historial de IMC<br/>
     </button>
     
-    <button onclick="setTimeout(function () {window.location.href = 'glucosa.php';}, 250);" class = "botontipo" type="button" href="index_esp.php">   
+    <button onclick="setTimeout(function () {window.location.href = 'historial_glucosa.php';}, 250);" class = "botontipo" type="button" href="index_esp.php">   
       <img class="icono" id="invert_image" src="imagenes/glucosa.png" alt="Glucosa image"/>
-      <br/> Glucosa en Sangre
+      <br/> Historial de Glucosa<br/> 
     </button>
 
-    <button onclick="setTimeout(function () {window.location.href = 'presion.php';}, 250);" class = "botontipo" class="botontipo_u" type="button" href="index_fra.php">   
+    <button onclick="setTimeout(function () {window.location.href = 'historial_presion.php';}, 250);" class = "botontipo" class="botontipo_u" type="button" href="index_fra.php">   
       <img class="icono" id="invert_image" src="imagenes/presion.png" alt="Presion image"/>
-      <br/> Presión Arterial
+      <br/> Historial de Presión<br/>
     </button>
 
             

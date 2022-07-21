@@ -20,7 +20,7 @@ function encabezado(){
     <a href="inicio.php" title="Inicio">
     <img class="logo_index" src="imagenes/logo_clinica.png" alt="Logo Clinicas ABC"/> </br></a> 
     
-    <a href='logout.php' class="user_desktop">  
+    <a href='edit_sesion.php' class="user_desktop">  
     <img class= "user_img" src="imagenes/user.png" alt="User image"/>
               
                
@@ -47,7 +47,7 @@ function encabezado(){
         Inicio
       </button>
 
-      <button onclick="window.location.href='historial.php'" class="opcion_barra" type="button" href="historial.php">   
+      <button onclick="window.location.href='select_historial.php'" class="opcion_barra" type="button" href="historial.php">   
         Historial
       </button>
 
@@ -98,7 +98,7 @@ function encabezado_mobile(){
           <button onclick="myFunction()" class="dropbtn">
           </button>
           <div id="myDropdown" class="dropdown-content">
-            <a href='logout.php' class="user">  
+            <a href='edit_sesion.php' class="user">  
   
               
                 <img class= "user_img" src="imagenes/user.png" alt="User image"/>
@@ -116,6 +116,7 @@ function encabezado_mobile(){
             </a>
 
             <a href="inicio.php">Inicio</a>
+            <a href="select_historial.php">Historial</a>
             <a href="masinformacion.php">Más Información</a>
             <a href="acercade.php">Acerca de</a>
           </div>
@@ -170,7 +171,7 @@ function pie($mensaje){
                 </button> </br>
                  Cutire-Feng-Gamero-St.Rose-Sáenz - Clínicas ABC &copy <?php echo date("Y") ?> Copyright<br>
                 Arquitecura y Desarrollo de Aplicaciones Web<br>
-                Evaluación de Aprendizajes N°2
+                Proyecto Semestral
                 
             </center>
         </footer>
@@ -223,11 +224,10 @@ function formulario_imc(){
        
          <p class="casillatext"> Altura (m): </p>  <input class="input" name="altura_imc" type="number" step="0.01" min="0.2" max="2.5" id="altura_imc" required>
         
-         <p class="casillatext"> Masa (kg): </p>  <input class="input" name="masa_imc" type="number" step="1" min="1" max="1000" id="masa_imc" required>
+         <p class="casillatext"> Masa (kg): </p>  <input class="input" name="masa_imc" type="number" step="1" min="1" max="1000" id="masa_imc" required> 
 
-       <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha_reg" type="date"  id="fecha_reg" required>
-
-
+         <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha" type="date"  id="fecha" required>
+        
        <div class="casilla" > <input class="btn" name="enviar_imc" type="submit" id="enviar_imc" value="Calcular IMC" > </div>
 
    </form> 
@@ -271,7 +271,7 @@ function formulario_glucosa(){
                  
           </label></br>
 
-             <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha_reg" type="date"  id="fecha_reg" required>
+             <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha" type="date"  id="fecha" required>
 
 
          </div>
@@ -304,7 +304,7 @@ function formulario_presion(){
         
          <p class="casillatext"> Presión diastólica (mm Hg): </p>  <input class="input" name="diastolica" type="number" step="1" min="10" max="500" id="diastolica" required>
 
-       <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha_reg" type="date"  id="fecha_reg" required>
+         <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha" type="date"  id="fecha" required>
 
        <div class="casilla" > <input class="btn" name="enviar_presion" type="submit" id="enviar_presion" value="Calcular Presión" > </div>
    </form> 
@@ -341,9 +341,38 @@ function resultados_imc(){
         if(isset($_POST["enviar_imc"])){
           $obj = new calculos();
           $imc_resultado = $obj->asignar_imc($_POST["altura_imc"], $_POST["masa_imc"]);
+          $imc_res = $obj->bd_imc($_POST["altura_imc"], $_POST["masa_imc"]);
           echo $imc_resultado;
         }
-        $obj->Calcularimc($_POST["altura_imc"], $_POST["masa_imc"]);
+          $obj->Calcularimc($_POST["altura_imc"], $_POST["masa_imc"]);
+        //Conexión a BD
+              $bd = "clinica-abc-bd";
+              $host= "localhost";
+              $pw = ""; //pasword
+              $user = "root";
+              $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+              mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+              
+              // Guardar datos en bd de registro
+              $registro1 = $_POST["altura_imc"] . ' m';
+              $registro2 = $_POST["masa_imc"] . " kg";
+              $fecha = $_POST["fecha"];
+              $usuario = $_COOKIE['usuario'];
+             
+
+              $sql = "INSERT INTO resultados (Tipo, Usuario,	Registro1, Registro2,	Resultado, Fecha) 
+              VALUES ('IMC', '$usuario'  , '$registro1' , '$registro2', '$imc_res', '$fecha' )";
+
+              
+              if ($con->query($sql)===TRUE){
+                echo "Resultado guardado. <br>";
+                }
+              else{
+              echo "error: Resultado no guardado. <br>";
+                }
+              $con->close();
+
+
         ?>
 
        <button onclick="setTimeout(function () {window.location.href = 'imc.php';}, 250);" class = "btn" type="button" href="imc.php">   
@@ -384,7 +413,36 @@ function resultados_glucosa(){
           $obj->asignar_glucosa($_POST["glucosa"], $_POST["glucosa_tipo"]);
         }
         $obj->Calcularglucosa($_POST["glucosa"], $_POST["glucosa_tipo"]);
+        $glucosa_res = $obj->bd_glucosa($_POST["glucosa"], $_POST["glucosa_tipo"]);
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+        $user = "root";
+        $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+
+        // Guardar datos en bd de registro
+        $registro1 =  $_POST["glucosa"] . ' mg/L';
+        $registro2 = $_POST["glucosa_tipo"] ;
+        $fecha = $_POST["fecha"];
+        $usuario = $_COOKIE['usuario'];
+        
+
+        $sql = "INSERT INTO resultados (Tipo, Usuario,	Registro1, Registro2,	Resultado, Fecha) 
+        VALUES ('Glucosa', '$usuario'  , '$registro1' , '$registro2', '$glucosa_res', '$fecha' )";
+
+
+        if ($con->query($sql)===TRUE){
+          echo "Resultado guardado. <br>";
+          }
+        else{
+        echo "error: Resultado no guardado. <br>";
+          }
+        $con->close();
+
         ?>
+
 
        <button onclick="setTimeout(function () {window.location.href = 'glucosa.php';}, 250);" class = "btn" type="button" href="imc.php">   
           Volver
@@ -424,11 +482,76 @@ function resultados_presion(){
           $obj->asignar_presion($_POST["sistolica"], $_POST["diastolica"]);
         }
         $obj->Calcularpresion($_POST["sistolica"], $_POST["diastolica"]);
+        $presion_res = $obj->db_presion($_POST["sistolica"], $_POST["diastolica"]);
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+        $user = "root";
+        $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+
+        // Guardar datos en bd de registro
+        $registro1 = $_POST["sistolica"] . ' mm Hg';
+        $registro2 = $_POST["diastolica"] . ' mm Hg';
+        $fecha = $_POST["fecha"];
+        $usuario = $_COOKIE['usuario'];
+        
+
+        $sql = "INSERT INTO resultados (Tipo, Usuario,	Registro1, Registro2,	Resultado, Fecha) 
+        VALUES ('Presion', '$usuario'  , '$registro1' , '$registro2', '$presion_res', '$fecha' )";
+
+
+        if ($con->query($sql)===TRUE){
+          echo "Resultado guardado. <br>";
+          }
+        else{
+        echo "error: Resultado no guardado. <br>";
+          }
+        $con->close();
+
+
         ?>
 
        <button onclick="setTimeout(function () {window.location.href = 'presion.php';}, 250);" class = "btn" type="button" href="imc.php">   
           Volver
        </button>
+   </form> 
+   
+   </br>
+       </div>
+       
+
+
+</div>
+
+<?php
+}
+?>
+
+
+<?php
+function historial(){
+?>
+<div class="formulario" >
+   
+
+   <div class="form" align=center>
+   <form name="login" method="post" action="presion_resultados.php">
+      <h2> Historial de </h2> 
+      <h3> Usted ingresó los datos: </h3> 
+
+         <p> Lectura :  <?php echo "Hola" ?>  </p>
+
+         
+        </br>
+      <h3> Resultados: </h3> 
+        <?php
+        
+         
+        ?>
+
+       
    </form> 
    
    </br>

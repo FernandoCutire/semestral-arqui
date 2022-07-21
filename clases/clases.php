@@ -10,18 +10,39 @@ class calculos{
     private $sistolica =0;
     private $diastolica=0;
 
-    public function conexion_bd() {
-        $bd="clinica-abc";
-        $host= "localhost";
-        $pw = ""; //pasword
-        $user = "root";
-        $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
-        return $con;
-    }
-
+    
     public function asignar_imc($altura, $masa) {
         $this->altura = $altura;
         $this->masa = $masa;
+       
+    }
+
+    
+    public function bd_imc($altura, $masa) {
+
+        $res = round($masa/($altura*$altura),1);
+
+
+        if ($res<18.5){
+            
+            return $res . " (Bajo de Peso)";
+        }
+        elseif ($res>=18.5 && $res<25){
+            
+            return $res . " (Peso Normal)";
+        }
+        elseif ($res>=25 && $res<30){
+            
+            return $res . " (Sobrepeso)";
+        }
+        elseif ($res>=30 && $res<40){
+           
+            return $res . " (Obeso)";
+        }
+        elseif ($res>=40){
+
+            return $res . " (Extrema Obesidad)";
+    }
     }
 
     public function asignar_glucosa($glucosa, $glucosa_tipo) {
@@ -29,30 +50,107 @@ class calculos{
         $this->glucosa_tipo = $glucosa_tipo;
     }
 
+    public function bd_glucosa($glucosa, $glucosa_tipo) {
+        switch ($glucosa_tipo) {
+        case "en ayuna":
+            if ($glucosa<70){
+                
+                
+            }
+            elseif($glucosa>=70 && $glucosa<=100) {
+                
+                        $res_glucosa='Glucosa Normal';
+                        return $res_glucosa;       
+                   
+            }
+            elseif($glucosa>100 && $glucosa<126) {
+                
+                
+                        $res_glucosa='Pre Diabetes';
+                        return $res_glucosa;
+                    
+            }
+            elseif($glucosa>=126) {
+                
+                        $res_glucosa='Diabetes';
+                        return $res_glucosa;
+                       
+                   
+            }
+            
+            break;
+        case "Posprandial":
+            if ($glucosa<70){
+                $res_glucosa='Glucosa Baja';
+                return $res_glucosa;
+                        
+                
+            }
+            elseif($glucosa>=70 && $glucosa<=140) {
+                $res_glucosa='Glucosa Normal';
+                return $res_glucosa;
+                        
+            }
+            elseif($glucosa>140 && $glucosa<200) {
+                $res_glucosa='Pre Diabetes';
+                return $res_glucosa;
+                       
+            }
+            elseif($glucosa>=200) {
+                $res_glucosa='Diabetes';
+                return $res_glucosa;
+                        
+            }
+            break;
+        }
+        
+    }
+
     public function asignar_presion($sistolica, $diastolica) {
         $this->sistolica = $sistolica;
         $this->diastolica = $diastolica;
     }
 
+    public function db_presion($sistolica, $diastolica) {
+        if (($sistolica<90)&&($diastolica<60)){
+            $res_presion='Presión Arterial Baja';
+             return $res_presion;      
+        }
+        elseif (($sistolica>=90)&&($sistolica<120)&&($diastolica<80)){
+            $res_presion='Presión Arterial Normal';
+            return $res_presion;         
+        }
+        elseif (($sistolica>=120)&&($sistolica<130)&&($diastolica<80)){
+            $res_presion='Presión Arterial Elevada';
+            return $res_presion;         
+            
+        }
+        elseif ((($sistolica>=130)&&($sistolica<139))||($diastolica>=80)&&($diastolica<90)){
+            $res_presion='Hipertensión Nivel 1';
+            return $res_presion;     
+            
+        }
+        elseif ((($sistolica>=140)&&($sistolica<180))||($diastolica>=90)&&($diastolica<120)){
+            $res_presion='Hipertensión Nivel 2';
+            return $res_presion;         
+            
+        }
+        elseif (($sistolica>=180)||($diastolica>=120)){
+            $res_presion='CRISIS DE HIPERTENSIÓN </br>Consulte a su médico inmediatemente';
+            return $res_presion;         
+            
+        }
+    }
 
 
-    public function Calcularimc($id_usuario, $altura, $masa, $fecha) {
-        $this->conexion_bd();
+
+    public function Calcularimc($altura, $masa) {
         $resultado_imc =0;
         $resultado_imc = $masa/($altura*$altura);
         $masanormal_bajo = 18.5 * ($altura*$altura);
         $masanormal_alto = 24.9 * ($altura*$altura);
 
-        $tipo = 'imc';
-
-        // Insercion de valores resultado
-
-        // $sql = "INSERT INTO `imc`(`id`, `tipo`, `masa`, `resultado`, `masanormal_bajo`, `masanormal_alto`) VALUES (NULL,$altura,$masa,$resultado_imc,$masanormal_bajo,$masanormal_alto)";
-        // altura, masa, resultado_imc, fecha
-
-        $sql = "INSERT INTO `resultados`(`id_usuario`, `tipo`, `primer_registro`, `segundo_registro`, `resultado`, `fecha` ) 
-                VALUES ($id_usuario, $tipo, $altura ,$masa, $resultado_imc)";
-
+       
         if ($resultado_imc<18.5){
             ?>
               <button class = "resultadoazul" type="button">   
@@ -132,7 +230,7 @@ class calculos{
 
 
     public function Calcularglucosa($glucosa, $glucosa_tipo) {
-        $this->conexion_bd();
+       
 
 
         switch ($glucosa_tipo) {
@@ -261,7 +359,7 @@ class calculos{
 
     public function Calcularpresion($sistolica, $diastolica) {
 
-        $this->conexion_bd();
+       
 
         if (($sistolica<90)&&($diastolica<60)){
             ?>
