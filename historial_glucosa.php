@@ -46,14 +46,10 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
 <div class="form" align=center>
 
-<h1>Historial Mensual de Glucosa</h1>
+<h1>Historial de Glucosa</h1>
 <br><br>
 
-
 <div class="gestor_table">
-    
-
-
 
         <?php
         //Conexión a BD
@@ -95,7 +91,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
         }
         ?>
     </table>
-
+    <br>
     <?php
         //Conexión a BD
         $bd = "clinica-abc-bd";

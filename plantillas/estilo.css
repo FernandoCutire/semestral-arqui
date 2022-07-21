@@ -71,6 +71,7 @@ article {
 
 h1 {
   color: var(--text-color);
+  text-align: center;
 }
 
 
@@ -735,7 +736,7 @@ h2 {
 /*Tables*/
 .gestor_table {
   border-collapse: collapse;
-  width: 100%;
+  width: auto;
   margin: 2rem;
 }
 
@@ -759,8 +760,8 @@ h2 {
 .table th,
 .table td {
   padding: 20px 15px;
-  
-
+  font-weight: bold;
+  text-align: center;
 }
 
 .table tbody tr {
