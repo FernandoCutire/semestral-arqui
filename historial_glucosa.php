@@ -46,13 +46,64 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
 <div class="form" align=center>
 
+
+
+<h1>Glucosa</h1>
+<br><br>
+
+    
+
+
+
+        <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+        $past_siete = date("y/m/d", strtotime("-1 week"));
+        $hoy = date("y/m/d", strtotime("today"));
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'Glucosa' and  Fecha between '$past_siete' and '$hoy'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Últimos 7 días</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Lectura Glucómetro (mg/L)</td>
+            <td>Lectura hecha en</td>
+            <td>Lectura</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <br><br>
 <h1>Historial Mensual de Glucosa</h1>
 <br><br>
 
 
-<div class="gestor_table">
     
-
 
 
         <?php
@@ -561,7 +612,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
 
 
-</div>
+
 </div>
 
 
