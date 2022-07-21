@@ -68,7 +68,7 @@ session_start();
             else{
               
               //Conexión a BD
-              $bd = "clinica-abc";
+              $bd = "clinica-abc-bd";
               $host= "localhost";
               $pw = ""; //pasword
               $user = "root";
