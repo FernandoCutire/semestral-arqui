@@ -730,8 +730,59 @@ h2 {
   border-radius: 1em;
 }
 
+/*Tablas de reporte*/
 
+/*Tables*/
+.gestor_table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2rem;
+}
 
+.gestor_table_first_column {
+  font-weight: 500;
+  font-size: 1.1rem;
+
+  color: #fff;
+  background-color: var(--secondary-color);
+}
+
+.table {
+  font-weight: 300;
+  width: 80%;
+  margin: 25px 0;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+.table tbody tr.active-row {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.gestor_table-actions a {
+  /*color: var(--primary-color);*/
+  text-decoration: none;
+}
 
 
   
