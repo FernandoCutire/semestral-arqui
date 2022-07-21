@@ -38,7 +38,7 @@ session_start();
 
       <div class="form" align=center>
       <form name="formulario" method="post" action="edit_pass.php">
-         <h3> Registre sus datos </h3> 
+         <h3> Ingrese Nueva Contraseña </h3> 
           <div class="casilla" > 
             <p class="casillatext"> Usuario: <?php echo $_SESSION['usuario'];?></p>  
           </div></br> 
