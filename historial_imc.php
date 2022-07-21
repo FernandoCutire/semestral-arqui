@@ -47,7 +47,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
 <div class="form" align=center>
 
 <h1>Historial de IMC</h1>
-<br><br>
+<br>
 
     
 

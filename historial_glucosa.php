@@ -48,8 +48,8 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
 
 
-<h1>Glucosa</h1>
-<br><br>
+<h1>Historial de Glucosa</h1>
+<br>
 
     
 
@@ -100,7 +100,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
     <br><br>
 <h1>Historial Mensual de Glucosa</h1>
-<br><br>
+
 
 
     

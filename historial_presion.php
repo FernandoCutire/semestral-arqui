@@ -44,8 +44,8 @@ if ($detect->isMobile() || $detect->isTablet()) {
 <article>
 
 <div class="form" align=center>
-<h1>Presión Arterial</h1>
-<br><br>
+<h1>Historial de Presión Arterial</h1>
+<br>
 
     
 
@@ -100,7 +100,7 @@ if ($detect->isMobile() || $detect->isTablet()) {
 
 <br><br>
 <h1>Historial Mensual de Presión Arterial</h1>
-<br><br>
+<br>
 
 
 <div class="gestor_table">
