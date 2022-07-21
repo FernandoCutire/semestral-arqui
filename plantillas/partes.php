@@ -292,8 +292,7 @@ function formulario_presion(){
    <div class="form" align=center>
    <form name="imc_form" method="post" action="presion_resultados.php">
       <h2> Presión Arterial </h2> 
-      <h3> Ingrese sus datos </h3> 
-       
+      <h3> Ingrese sus datos </h3>
          <p class="casillatext"> Presión sistólica (mm Hg): </p>  <input class="input" name="sistolica" type="number" step="1" min="10" max="500" id="sistolica" required>
         
          <p class="casillatext"> Presión diastólica (mm Hg): </p>  <input class="input" name="diastolica" type="number" step="1" min="10" max="500" id="diastolica" required> 
