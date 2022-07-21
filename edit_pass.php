@@ -45,7 +45,8 @@ session_start();
           <div class="casilla" > 
             <p class="casillatext"> Nueva contraseña: </p>  <input class="input" name="clave" type="password" id="clave"> 
           </div> </br> 
-          <div class="casilla" > <input class="btn" name="enviar" type="submit" id="enviar" value="Registrar" > </div>
+          <div class="casilla" > <input class="btn" name="enviar" type="submit" id="enviar" value="Registrar" > </div><br><br>
+          <div class="casilla" >   <a class="btn" href="index.php"> Cancelar  </a> </div>
           <br><br>
           
 
