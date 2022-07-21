@@ -36,17 +36,22 @@ class calculos{
 
 
 
-    public function Calcularimc($altura, $masa) {
+    public function Calcularimc($id_usuario, $altura, $masa, $fecha) {
         $this->conexion_bd();
         $resultado_imc =0;
         $resultado_imc = $masa/($altura*$altura);
         $masanormal_bajo = 18.5 * ($altura*$altura);
         $masanormal_alto = 24.9 * ($altura*$altura);
 
+        $tipo = 'imc';
+
         // Insercion de valores resultado
 
         // $sql = "INSERT INTO `imc`(`id`, `tipo`, `masa`, `resultado`, `masanormal_bajo`, `masanormal_alto`) VALUES (NULL,$altura,$masa,$resultado_imc,$masanormal_bajo,$masanormal_alto)";
         // altura, masa, resultado_imc, fecha
+
+        $sql = "INSERT INTO `resultados`(`id_usuario`, `tipo`, `primer_registro`, `segundo_registro`, `resultado`, `fecha` ) 
+                VALUES ($id_usuario, $tipo, $altura ,$masa, $resultado_imc)";
 
         if ($resultado_imc<18.5){
             ?>
