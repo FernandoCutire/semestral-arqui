@@ -223,9 +223,13 @@ function formulario_imc(){
        
          <p class="casillatext"> Altura (m): </p>  <input class="input" name="altura_imc" type="number" step="0.01" min="0.2" max="2.5" id="altura_imc" required>
         
-         <p class="casillatext"> Masa (kg): </p>  <input class="input" name="masa_imc" type="number" step="1" min="1" max="1000" id="masa_imc" required> 
-        
+         <p class="casillatext"> Masa (kg): </p>  <input class="input" name="masa_imc" type="number" step="1" min="1" max="1000" id="masa_imc" required>
+
+       <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha_reg" type="date"  id="fecha_reg" required>
+
+
        <div class="casilla" > <input class="btn" name="enviar_imc" type="submit" id="enviar_imc" value="Calcular IMC" > </div>
+
    </form> 
    
    </br>
@@ -266,7 +270,10 @@ function formulario_glucosa(){
               Posprandrial (dos horas después de comer)
                  
           </label></br>
-  
+
+             <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha_reg" type="date"  id="fecha_reg" required>
+
+
          </div>
 
        <div class="casilla" > <input class="btn" name="enviar_glucosa" type="submit" id="enviar_glucosa" value="Calcular Glucosa" > </div>
@@ -295,8 +302,10 @@ function formulario_presion(){
       <h3> Ingrese sus datos </h3>
          <p class="casillatext"> Presión sistólica (mm Hg): </p>  <input class="input" name="sistolica" type="number" step="1" min="10" max="500" id="sistolica" required>
         
-         <p class="casillatext"> Presión diastólica (mm Hg): </p>  <input class="input" name="diastolica" type="number" step="1" min="10" max="500" id="diastolica" required> 
-        
+         <p class="casillatext"> Presión diastólica (mm Hg): </p>  <input class="input" name="diastolica" type="number" step="1" min="10" max="500" id="diastolica" required>
+
+       <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha_reg" type="date"  id="fecha_reg" required>
+
        <div class="casilla" > <input class="btn" name="enviar_presion" type="submit" id="enviar_presion" value="Calcular Presión" > </div>
    </form> 
    
