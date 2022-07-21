@@ -10,6 +10,14 @@ class calculos{
     private $sistolica =0;
     private $diastolica=0;
 
+    public function conexion_bd() {
+        $bd="clinica-abc";
+        $host= "localhost";
+        $pw = ""; //pasword
+        $user = "root";
+        $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        return $con;
+    }
 
     public function asignar_imc($altura, $masa) {
         $this->altura = $altura;
@@ -29,10 +37,17 @@ class calculos{
 
 
     public function Calcularimc($altura, $masa) {
+        $this->conexion_bd();
         $resultado_imc =0;
         $resultado_imc = $masa/($altura*$altura);
         $masanormal_bajo = 18.5 * ($altura*$altura);
         $masanormal_alto = 24.9 * ($altura*$altura);
+
+        // Insercion de valores resultado
+
+        // $sql = "INSERT INTO `imc`(`id`, `tipo`, `masa`, `resultado`, `masanormal_bajo`, `masanormal_alto`) VALUES (NULL,$altura,$masa,$resultado_imc,$masanormal_bajo,$masanormal_alto)";
+        // altura, masa, resultado_imc, fecha
+
         if ($resultado_imc<18.5){
             ?>
               <button class = "resultadoazul" type="button">   
@@ -112,6 +127,7 @@ class calculos{
 
 
     public function Calcularglucosa($glucosa, $glucosa_tipo) {
+        $this->conexion_bd();
 
 
         switch ($glucosa_tipo) {
@@ -239,6 +255,9 @@ class calculos{
     }
 
     public function Calcularpresion($sistolica, $diastolica) {
+
+        $this->conexion_bd();
+
         if (($sistolica<90)&&($diastolica<60)){
             ?>
               <button class = "resultadoazul" type="button">   

@@ -41,15 +41,11 @@ else{
 
 ?>
 
-<article>
-<center><h2> Historial </h2> </center> </br>
-<center><h3> Índice de Masa Corporal </h3> </center></br>
-<img class="img_info" src="imagenes/imc_info.jpg" alt="Menu"/>
- <p class="text_resultado">
-El índice de masa corporal (IMC) es una razón matemática que asocia la masa y la talla de un individuo, ideada por el estadista belga Adolphe Quetelet, por lo que también se conoce como índice de Quetelet. </br> </br>
-El IMC también puede calcularse a partir de tablas o gráficas que muestran el IMC en función de la masa y la altura usando líneas de contorno para distintas categorías. El IMC es un criterio ampliamente aceptado pero no es exacto. Clasifica a las personas en infrapeso, peso normal, sobrepeso y obesidad, basándose exclusivamente en la masa del individuo y su altura.
-</br> </br>
+<p>Usuario: <span></span></p>
 
+<h1>Reporte semanal</h1>
+
+<h1>Reporte mensual</h1>
 
 
 <main>
