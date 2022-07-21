@@ -20,7 +20,7 @@ function encabezado(){
     <a href="inicio.php" title="Inicio">
     <img class="logo_index" src="imagenes/logo_clinica.png" alt="Logo Clinicas ABC"/> </br></a> 
     
-    <a href='logout.php' class="user_desktop">  
+    <a href='edit_sesion.php' class="user_desktop">  
     <img class= "user_img" src="imagenes/user.png" alt="User image"/>
               
                
@@ -98,7 +98,7 @@ function encabezado_mobile(){
           <button onclick="myFunction()" class="dropbtn">
           </button>
           <div id="myDropdown" class="dropdown-content">
-            <a href='logout.php' class="user">  
+            <a href='edit_sesion.php' class="user">  
   
               
                 <img class= "user_img" src="imagenes/user.png" alt="User image"/>
@@ -354,8 +354,8 @@ function resultados_imc(){
               mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
               
               // Guardar datos en bd de registro
-              $registro1 = 'Altura: ' . $_POST["altura_imc"] . ' m';
-              $registro2 = "Masa: " . $_POST["masa_imc"] . " kg";
+              $registro1 = $_POST["altura_imc"] . ' m';
+              $registro2 = $_POST["masa_imc"] . " kg";
               $fecha = $_POST["fecha"];
               $usuario = $_COOKIE['usuario'];
              
@@ -423,8 +423,8 @@ function resultados_glucosa(){
         mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
 
         // Guardar datos en bd de registro
-        $registro1 = 'Glucometro: ' . $_POST["glucosa"] . ' mg/L';
-        $registro2 = "Medida: " . $_POST["glucosa_tipo"] ;
+        $registro1 =  $_POST["glucosa"] . ' mg/L';
+        $registro2 = $_POST["glucosa_tipo"] ;
         $fecha = $_POST["fecha"];
         $usuario = $_COOKIE['usuario'];
         
@@ -492,8 +492,8 @@ function resultados_presion(){
         mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
 
         // Guardar datos en bd de registro
-        $registro1 = 'Sistólica: ' . $_POST["sistolica"] . ' mm Hg';
-        $registro2 = "Diastólica: " . $_POST["diastolica"] . ' mm Hg';
+        $registro1 = $_POST["sistolica"] . ' mm Hg';
+        $registro2 = $_POST["diastolica"] . ' mm Hg';
         $fecha = $_POST["fecha"];
         $usuario = $_COOKIE['usuario'];
         
