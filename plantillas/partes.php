@@ -47,6 +47,10 @@ function encabezado(){
         Inicio
       </button>
 
+      <button onclick="window.location.href='historial.php'" class="opcion_barra" type="button" href="historial.php">   
+        Historial
+      </button>
+
       <button onclick="window.location.href='masinformacion.php'" class="opcion_barra" type="button" href="inicio.php">   
         Más Información
       </button>
