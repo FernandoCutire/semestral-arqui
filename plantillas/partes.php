@@ -225,7 +225,7 @@ function formulario_imc(){
         
          <p class="casillatext"> Masa (kg): </p>  <input class="input" name="masa_imc" type="number" step="1" min="1" max="1000" id="masa_imc" required> 
 
-         <p class="casillatext"> Fecha de captura: </p><input type="date"  name="fecha" min="2018-01-01" max="2022-12-31" id="fecha" required>
+         <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha" type="date"  id="fecha" required>
         
        <div class="casilla" > <input class="btn" name="enviar_imc" type="submit" id="enviar_imc" value="Calcular IMC" > </div>
 
@@ -270,7 +270,7 @@ function formulario_glucosa(){
                  
           </label></br>
 
-             <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha_reg" type="date"  id="fecha_reg" required>
+             <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha" type="date"  id="fecha" required>
 
 
          </div>
@@ -303,7 +303,7 @@ function formulario_presion(){
         
          <p class="casillatext"> Presión diastólica (mm Hg): </p>  <input class="input" name="diastolica" type="number" step="1" min="10" max="500" id="diastolica" required>
 
-       <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha_reg" type="date"  id="fecha_reg" required>
+         <p class="casillatext"> Fecha: </p>  <input class="input" name="fecha" type="date"  id="fecha" required>
 
        <div class="casilla" > <input class="btn" name="enviar_presion" type="submit" id="enviar_presion" value="Calcular Presión" > </div>
    </form> 
@@ -357,17 +357,17 @@ function resultados_imc(){
               $registro2 = "Masa: " . $_POST["masa_imc"] . " kg";
               $fecha = $_POST["fecha"];
               $usuario = $_COOKIE['usuario'];
-              echo $usuario;
+             
 
               $sql = "INSERT INTO resultados (Tipo, Usuario,	Registro1, Registro2,	Resultado, Fecha) 
               VALUES ('IMC', '$usuario'  , '$registro1' , '$registro2', '$imc_res', '$fecha' )";
 
               
               if ($con->query($sql)===TRUE){
-                echo "Guardado";
+                echo "Resultado guardado. <br>";
                 }
               else{
-              echo "error: ".$sql . "<br>" . $con->error;
+              echo "error: Resultado no guardado. <br>";
                 }
               $con->close();
 
@@ -412,7 +412,36 @@ function resultados_glucosa(){
           $obj->asignar_glucosa($_POST["glucosa"], $_POST["glucosa_tipo"]);
         }
         $obj->Calcularglucosa($_POST["glucosa"], $_POST["glucosa_tipo"]);
+        $glucosa_res = $obj->bd_glucosa($_POST["glucosa"], $_POST["glucosa_tipo"]);
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+        $user = "root";
+        $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+
+        // Guardar datos en bd de registro
+        $registro1 = 'Glucometro: ' . $_POST["glucosa"] . ' mg/L';
+        $registro2 = "Medida: " . $_POST["glucosa_tipo"] ;
+        $fecha = $_POST["fecha"];
+        $usuario = $_COOKIE['usuario'];
+        
+
+        $sql = "INSERT INTO resultados (Tipo, Usuario,	Registro1, Registro2,	Resultado, Fecha) 
+        VALUES ('Glucosa', '$usuario'  , '$registro1' , '$registro2', '$glucosa_res', '$fecha' )";
+
+
+        if ($con->query($sql)===TRUE){
+          echo "Resultado guardado. <br>";
+          }
+        else{
+        echo "error: Resultado no guardado. <br>";
+          }
+        $con->close();
+
         ?>
+
 
        <button onclick="setTimeout(function () {window.location.href = 'glucosa.php';}, 250);" class = "btn" type="button" href="imc.php">   
           Volver
@@ -452,6 +481,35 @@ function resultados_presion(){
           $obj->asignar_presion($_POST["sistolica"], $_POST["diastolica"]);
         }
         $obj->Calcularpresion($_POST["sistolica"], $_POST["diastolica"]);
+        $presion_res = $obj->db_presion($_POST["sistolica"], $_POST["diastolica"]);
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+        $user = "root";
+        $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+
+        // Guardar datos en bd de registro
+        $registro1 = 'Sistólica: ' . $_POST["sistolica"] . ' mm Hg';
+        $registro2 = "Diastólica: " . $_POST["diastolica"] . ' mm Hg';
+        $fecha = $_POST["fecha"];
+        $usuario = $_COOKIE['usuario'];
+        
+
+        $sql = "INSERT INTO resultados (Tipo, Usuario,	Registro1, Registro2,	Resultado, Fecha) 
+        VALUES ('Glucosa', '$usuario'  , '$registro1' , '$registro2', '$presion_res', '$fecha' )";
+
+
+        if ($con->query($sql)===TRUE){
+          echo "Resultado guardado. <br>";
+          }
+        else{
+        echo "error: Resultado no guardado. <br>";
+          }
+        $con->close();
+
+
         ?>
 
        <button onclick="setTimeout(function () {window.location.href = 'presion.php';}, 250);" class = "btn" type="button" href="imc.php">   

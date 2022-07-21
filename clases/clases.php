@@ -59,18 +59,21 @@ class calculos{
             }
             elseif($glucosa>=70 && $glucosa<=100) {
                 
-                        $res_glucosa='Glucosa Normal';       
+                        $res_glucosa='Glucosa Normal';
+                        return $res_glucosa;       
                    
             }
             elseif($glucosa>100 && $glucosa<126) {
                 
                 
                         $res_glucosa='Pre Diabetes';
+                        return $res_glucosa;
                     
             }
             elseif($glucosa>=126) {
                 
                         $res_glucosa='Diabetes';
+                        return $res_glucosa;
                        
                    
             }
@@ -79,28 +82,64 @@ class calculos{
         case "Posprandial":
             if ($glucosa<70){
                 $res_glucosa='Glucosa Baja';
+                return $res_glucosa;
                         
                 
             }
             elseif($glucosa>=70 && $glucosa<=140) {
                 $res_glucosa='Glucosa Normal';
+                return $res_glucosa;
                         
             }
             elseif($glucosa>140 && $glucosa<200) {
                 $res_glucosa='Pre Diabetes';
+                return $res_glucosa;
                        
             }
             elseif($glucosa>=200) {
                 $res_glucosa='Diabetes';
+                return $res_glucosa;
                         
             }
             break;
         }
+        
     }
 
     public function asignar_presion($sistolica, $diastolica) {
         $this->sistolica = $sistolica;
         $this->diastolica = $diastolica;
+    }
+
+    public function db_presion($sistolica, $diastolica) {
+        if (($sistolica<90)&&($diastolica<60)){
+            $res_presion='Presión Arterial Baja';
+             return $res_presion;      
+        }
+        elseif (($sistolica>=90)&&($sistolica<120)&&($diastolica<80)){
+            $res_presion='Presión Arterial Normal';
+            return $res_presion;         
+        }
+        elseif (($sistolica>=120)&&($sistolica<130)&&($diastolica<80)){
+            $res_presion='Presión Arterial Elevada';
+            return $res_presion;         
+            
+        }
+        elseif ((($sistolica>=130)&&($sistolica<139))||($diastolica>=80)&&($diastolica<90)){
+            $res_presion='Hipertensión Nivel 1';
+            return $res_presion;     
+            
+        }
+        elseif ((($sistolica>=140)&&($sistolica<180))||($diastolica>=90)&&($diastolica<120)){
+            $res_presion='Hipertensión Nivel 2';
+            return $res_presion;         
+            
+        }
+        elseif (($sistolica>=180)||($diastolica>=120)){
+            $res_presion='CRISIS DE HIPERTENSIÓN </br>Consulte a su médico inmediatemente';
+            return $res_presion;         
+            
+        }
     }
 
 

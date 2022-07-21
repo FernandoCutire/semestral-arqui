@@ -37,31 +37,531 @@ if ($detect->isMobile() || $detect->isTablet()) {
     encabezado();
 }
 
+ 
+
 ?>
 
 <article>
 
 
-<div class="gestor_table">
-    <h3>Reporte mensual IMC</h3>
+<div class="form" align=center>
 
-    <table class="table">
-        <tr class="gestor_table_first_column">
+<h1>Historial Mensual de IMC</h1>
+<br><br>
+
+
+<div class="gestor_table">
+    
+
+
+
+        <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/01/01' and '2022/01/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Enero</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
             <td>Altura(m)</td>
             <td>Masa(kg)</td>
             <td>IMC</td>
             <td>Fecha</td>
         </tr>
         <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
         echo "<tr class='gestor_table_rows'>";
-        echo "<td>" . "1.75" . "</td>";
-        echo "<td>" . "60" . "</td>";
-        echo "<td class='gestor_table_rows-estatus'>" . "25" . "</td>";
-        echo "<td>" . "21-07-2022" . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
         ?>
     </table>
-</div>
 
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/02/01' and '2022/02/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Febrero</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/03/01' and '2022/03/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Marzo</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/04/01' and '2022/04/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Abril</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/05/01' and '2022/05/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Mayo</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/06/01' and '2022/06/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Junio</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/07/01' and '2022/07/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Julio</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/08/01' and '2022/08/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Agosto</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/09/01' and '2022/09/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Septiembre</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/10/01' and '2022/10/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Octubre</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/11/01' and '2022/11/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Noviembre</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    <?php
+        //Conexión a BD
+        $bd = "clinica-abc-bd";
+        $host= "localhost";
+        $pw = ""; //pasword
+         $user = "root";
+         $con =mysqli_connect($host,$user,$pw,$bd) or die ("no se pudo autentificar con la BD");
+        mysqli_select_db($con, $bd) or die ("no se pudo conectar a la BD");
+ 
+        $usuario = mysqli_real_escape_string($con,$_SESSION['usuario']);
+ 
+        // Se crea un loop para leer la bd
+        $sql = "select *from resultados where Usuario = '$usuario' and Tipo = 'IMC' and  Fecha between '2022/12/01' and '2022/12/31'";  
+        $resultado = mysqli_query($con, $sql); 
+        //Cuenta cuántas entradas hay en ese mes
+        $cont_entradas = mysqli_num_rows($resultado);
+        //Solo muestra la tabla si tiene una o más entradas
+        if ($cont_entradas>= 1){
+            ?>
+        <h3>Diciembre</h3>
+
+            <table class="table">
+            <tr class="gestor_table_first_column">
+            <td>Altura(m)</td>
+            <td>Masa(kg)</td>
+            <td>IMC</td>
+            <td>Fecha</td>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($resultado)){
+            
+        echo "<tr class='gestor_table_rows'>";
+        echo "<td>" . htmlspecialchars($row['Registro1']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Registro2']) . "</td>";
+        echo "<td class='gestor_table_rows-estatus'>" . htmlspecialchars($row['Resultado']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Fecha']) . "</td>";
+        }
+        }
+        ?>
+    </table>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<br>
 <h1>Glucosa</h1>
 
 <div class="gestor_table">
@@ -143,10 +643,9 @@ if ($detect->isMobile() || $detect->isTablet()) {
         ?>
     </table>
 </div>
+</div>
 
-<?php
-  historial();
-?> 
+
 
 <main>
 
